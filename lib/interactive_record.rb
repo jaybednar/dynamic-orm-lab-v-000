@@ -67,6 +67,7 @@ class InteractiveRecord
   end
 
   def self.find_by(hash)
+    binding.pry
     identifier = []
     hash.each do |property, value|
       identifier << "#{property} = '#{value}'"
