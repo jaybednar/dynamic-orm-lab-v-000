@@ -70,7 +70,7 @@ class InteractiveRecord
 
     identifier = []
     hash.each do |property, value|
-      if value.class == Integer
+      if value.integer?
         identifier << "#{property} = #{value}"
       else
         identifier << "#{property} = '#{value}'"
