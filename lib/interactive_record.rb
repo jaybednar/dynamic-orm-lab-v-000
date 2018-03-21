@@ -67,15 +67,16 @@ class InteractiveRecord
   end
 
   def self.find_by(hash)
-    binding.pry
+
     identifier = []
     hash.each do |property, value|
-      if value.class == Integer 
+      if value.class == Integer
         identifier << "#{property} = #{value}"
-      else 
+      else
         identifier << "#{property} = '#{value}'"
-      end 
+      end
     end
+    binding.pry
     sql = "SELECT * FROM #{table_name} WHERE #{identifier.join(", ")}"
     DB[:conn].execute(sql)
     # sql = <<-SQL
