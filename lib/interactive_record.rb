@@ -70,7 +70,11 @@ class InteractiveRecord
     binding.pry
     identifier = []
     hash.each do |property, value|
-      identifier << "#{property} = '#{value}'"
+      if value.class == Integer 
+        identifier << "#{property} = #{value}"
+      else 
+        identifier << "#{property} = '#{value}'"
+      end 
     end
     sql = "SELECT * FROM #{table_name} WHERE #{identifier.join(", ")}"
     DB[:conn].execute(sql)
