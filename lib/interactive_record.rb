@@ -71,13 +71,13 @@ class InteractiveRecord
     identifier = []
     hash.each do |property, value|
       if value.integer?
-        identifier << "#{property} = #{value}"
+        identifier << [property = value]
       else
         identifier << "#{property} = '#{value}'"
       end
     end
     binding.pry
-    sql = "SELECT * FROM #{table_name} WHERE #{identifier.join(", ")}"
+    sql = "SELECT * FROM #{table_name} WHERE #{identifier.flatten.join(", ")}"
     DB[:conn].execute(sql)
     # sql = <<-SQL
     #   SELECT *
